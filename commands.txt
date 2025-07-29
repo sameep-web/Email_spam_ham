@@ -1,0 +1,8 @@
+first run this in the terminal - " pip install -r requirements.txt "
+
+
+next, run this command in the terminal - " streamlit run app.py "
+
+Now you will be able to see interface. To predict email is spam or ham, i have written some email subjects in
+example.txt file. You can copy any email from the file and paste it in the email text area in your interface.
+This is just for testing purpose, in case you want to give demo of your model. You can take your own examples also
