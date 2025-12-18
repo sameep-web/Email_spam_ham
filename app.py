@@ -5,12 +5,24 @@ import re
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import os
+import nltk
 
-nltk.data.path.append("/home/adminuser/nltk_data")
+# Safe NLTK downloads for Streamlit Cloud
+try:
+    nltk.data.find("tokenizers/punkt")
+except LookupError:
+    nltk.download("punkt")
 
-nltk.download("punkt", download_dir="/home/adminuser/nltk_data")
-nltk.download("stopwords", download_dir="/home/adminuser/nltk_data")
-nltk.download("wordnet", download_dir="/home/adminuser/nltk_data")
+try:
+    nltk.data.find("corpora/stopwords")
+except LookupError:
+    nltk.download("stopwords")
+
+try:
+    nltk.data.find("corpora/wordnet")
+except LookupError:
+    nltk.download("wordnet")
+
 
 with open("best_model.pkl", "rb") as f:
     model = pickle.load(f)
