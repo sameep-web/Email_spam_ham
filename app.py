@@ -4,10 +4,13 @@ import nltk
 import re
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import os
 
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
+nltk.data.path.append("/home/adminuser/nltk_data")
+
+nltk.download("punkt", download_dir="/home/adminuser/nltk_data")
+nltk.download("stopwords", download_dir="/home/adminuser/nltk_data")
+nltk.download("wordnet", download_dir="/home/adminuser/nltk_data")
 
 with open("best_model.pkl", "rb") as f:
     model = pickle.load(f)
