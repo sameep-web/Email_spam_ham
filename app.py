@@ -1,27 +1,8 @@
 import streamlit as st
 import pickle
-import nltk
 import re
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-import os
-import nltk
-
-# Safe NLTK downloads for Streamlit Cloud
-try:
-    nltk.data.find("tokenizers/punkt")
-except LookupError:
-    nltk.download("punkt")
-
-try:
-    nltk.data.find("corpora/stopwords")
-except LookupError:
-    nltk.download("stopwords")
-
-try:
-    nltk.data.find("corpora/wordnet")
-except LookupError:
-    nltk.download("wordnet")
 
 
 with open("best_model.pkl", "rb") as f:
@@ -35,7 +16,7 @@ lemmatizer = WordNetLemmatizer()
 
 def preprocess(text):
     text = text.lower()
-    tokens = nltk.word_tokenize(text)
+    tokens = re.findall(r"\b[a-zA-Z]+\b", text)
     tokens = [word for word in tokens if word.isalpha() and word not in stop_words]
     tokens = [lemmatizer.lemmatize(word) for word in tokens]
     return " ".join(tokens)
